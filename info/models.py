@@ -75,7 +75,6 @@ class Course(models.Model):
 
 
 class Class(models.Model):
-    # courses = models.ManyToManyField(Course, default=1)
     id = models.CharField(primary_key='True', max_length=100)
     dept = models.ForeignKey(Dept, on_delete=models.CASCADE)
     section = models.CharField(max_length=100)
@@ -90,7 +89,7 @@ class Class(models.Model):
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE, default=1)
     USN = models.CharField(primary_key='True', max_length=100)
     name = models.CharField(max_length=200)
