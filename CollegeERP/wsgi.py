@@ -15,8 +15,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CollegeERP.settings')
 
 
 from django.core.wsgi import get_wsgi_application
-# from whitenoise.django import DjangoWhiteNoise
+from whitenose import WhiteNose
 
 
 application = get_wsgi_application()
 # application = DjangoWhiteNoise(application)
+
+application = CollegeERP()
+application = WhiteNoise(application, root="/AttendenceMgtSys/staticfiles")
