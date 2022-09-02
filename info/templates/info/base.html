@@ -36,7 +36,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="{% url 'index' %}">College Management System</a>
+      <a class="navbar-brand mr-1" href="{% url 'index' %}">College Attendance Management System</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -71,23 +71,8 @@
             </li>
         {% if request.user.is_student %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'attendance' request.user.student.USN %}">
+              <a class="nav-link" href="{% url 'attendance' request.user.student.serial_number %}">
                 <span>Attendance</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'attendance' request.user.student.USN %}">
-                <span>Attendance By Subject</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'marks_list' request.user.student.USN %}">
-                <span>Marks</span>
-              </a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 'timetable' request.user.student.class_id_id %}">
-                <span>Time Table</span>
               </a>
             </li>
 
@@ -95,16 +80,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 't_clas' request.user.teacher.id 1 %}">
                 <span>Attendance</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 't_clas' request.user.teacher.id 2 %}">
-                <span>Marks</span>
-              </a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 't_timetable' request.user.teacher.id %}">
-                <span>Time Table</span>
               </a>
             </li>
             <li class="nav-item">
@@ -138,7 +113,7 @@
 {#        <footer class="sticky-footer">#}
 {#          <div class="container my-auto">#}
 {#            <div class="copyright text-center my-auto">#}
-{#              <span>Copyright © Your Website 2018</span>#}
+{#              <span>Copyright © Sudip 2022</span>#}
 {#            </div>#}
 {#          </div>#}
 {#        </footer>#}

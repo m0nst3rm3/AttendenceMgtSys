@@ -11,8 +11,6 @@
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                   <thead class="thead-light ">
                     <tr>
-                        <th>Course ID</th>
-                        <th>Course name</th>
                         <th>Attended classes</th>
                         <th>Total classes</th>
                         <th>Attendance %</th>
@@ -22,8 +20,6 @@
                   <tbody>
                     {% for a in att_list %}
                     <tr>
-                        <td>{{ a.course_id }}</td>
-                        <td><a href="{% url 'attendance_detail' a.student.USN a.course.id %}">{{a.course.name}}</a></td>
                         <td>{{ a.att_class }}</td>
                         <td>{{ a.total_class }}</td>
                         {% if a.attendance < 75 %}
@@ -33,16 +29,12 @@
                         {% endif %}
                         <td>{{ a.classes_to_attend }}</td>
                     </tr>
-                    {% empty %}
-                            <p>student has no courses</p>
-                    {% endfor %}
-
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
 
-
+    {% endfor %}
     {% endblock %}
 

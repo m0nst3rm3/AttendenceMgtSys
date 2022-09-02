@@ -11,7 +11,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                        <th>USN</th>
                         <th>Student name</th>
                         <th>Attended classes</th>
                         <th>Total classes</th>
@@ -23,7 +22,6 @@
                     {% for a in att_list %}
                     <tr>
                         <td>{{ a.student_id }}</td>
-                        <td><a href="{% url 't_attendance_detail' a.student.USN a.course_id %}">{{ a.student.name }}</a></td>
                         <td>{{ a.att_class }}</td>
                         <td>{{ a.total_class }}</td>
                         {% if a.attendance < 75 %}

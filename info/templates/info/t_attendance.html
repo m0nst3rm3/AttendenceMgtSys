@@ -5,9 +5,6 @@
 <form action="{% url 'confirm' assc.id %}" method="post">
             {% csrf_token %}
     <div class="card mb-3">
-        <div class="card-header">
-          <i class="fas fa-table"></i>
-         <b>{{ dept1.name }}</b></div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -18,18 +15,18 @@
                 </tr>
               </thead>
                 <tbody>
-                {% for s in c.student_set.all %}
+                {% for s in student_set.all %}
                     <tr>
                     <td>{{s.name}}</td>
                     <td>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
                                 <label class="btn btn-outline-success active">
-                                    <input type="radio" name="{{ s.USN }}" id="option1" autocomplete="off" value="present" checked> Present
+                                    <input type="radio" name="{{ s.serial_number }}" id="option1" autocomplete="off" value="present" checked> Present
                                 </label>
 
                                 <label class="btn btn-outline-danger">
-                                    <input type="radio" name="{{ s.USN }}" id="option2" autocomplete="off" value="absent"> Absent
+                                    <input type="radio" name="{{ s.serial_number }}" id="option2" autocomplete="off" value="absent"> Absent
                                 </label>
                         </div>
                     </td>

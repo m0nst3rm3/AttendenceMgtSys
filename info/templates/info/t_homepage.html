@@ -76,38 +76,6 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-              <a href="{% url 't_clas' request.user.teacher.id 2 %}">
-                <img class="card-img-top" src="{% static 'info/images/marks.jpg' %}" alt="">
-              </a>
-              <div class="card-body">
-              <h4 class="card-title">Marks</h4>
-              <p class="card-text">Enter the marks of the students based on the class they are in. This includes
-                    Internals, events and SEE. The marks of the students can also be edited.</p>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 't_clas' request.user.teacher.id 2 %}">Enter Marks</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
-              <a href="{% url 't_timetable' request.user.teacher.id %}">
-                <img class="card-img-top" src="{% static 'info/images/timetable.png' %}" alt="">
-              </a>
-              <div class="card-body">
-              <h4 class="card-title">TimeTable</h4>
-              <p class="card-text">View the timetable in a tabular form. For a particular class, it specifies a
-                  list of teachers who handle the same class that are free for that time slot.</p>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 't_timetable' request.user.teacher.id %}">View TimeTable</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card">
             <a href="{% url 't_clas' request.user.teacher.id 3 %}">
                 <img class="card-img-top" src="{% static 'info/images/reports.png' %}" alt="">
             </a>
