@@ -18,12 +18,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                        {% for a in att_list %}
+                        {% for attendance in data %}
                         <tr class="row100 body">
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ a.date }}</td>
-                            <td>{{ a.date|date:"l" }}</td>
-                            {% if a.status %}
+                            <td>{{ data.counter }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.date|date:"l" }}</td>
+                            {% if data.status %}
                             <td class="p-3 mb-2 bg-success text-white">Present <span class="glyphicon glyphicon-thumbs-up"></span></td>
                             {% else %}
                             <td class="p-3 mb-2 bg-danger text-white">Absent <span class="glyphicon glyphicon-thumbs-down"></span></td>

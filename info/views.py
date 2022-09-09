@@ -1,11 +1,8 @@
 from datetime import date
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
 from .models import Assign, AttendanceTotal
-from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
 
 
 @login_required
@@ -23,11 +20,17 @@ def index(request):
 
 @login_required()
 def attendance(request, id):
-    student = Student.objects.get(id=id)
-    assignment_list = Assign.objects.filter(class_id_id=student.class_id)
-    for assignment in assignment_list:
-        AttendanceTotal.objects.get_or_create(student=student, course=assignment.course)
-    return render(request, 'info/attendance.html', {'att_list': AttendanceTotal.objects.all()})
+    # student = Student.objects.get(id=id)
+    # assignment_list = Assign.objects.filter(class_id_id=student.class_id)
+    # for assignment in assignment_list:
+    #     AttendanceTotal.objects.get_or_create(student=student, course=assignment.course)
+    # return render(request, 'info/attendance.html', {'att_list': AttendanceTotal.objects.all()})
+
+    data = {}
+
+    attendance1 = Attendance.objects.filter(daily_login=date.today()).first()
+    data[attendance1] = attendance1.daily_login if "Present" else "Absent"
+    return render(request, 'info/attendance.html', context={"data": data})
 
 
 @login_required()
@@ -46,29 +49,6 @@ def all_student_attendance(request, *args, **kwargs):
         attendance1 = Attendance.objects.filter(student=student, daily_login=date.today()).first()
         data[student] = attendance1.daily_login if attendance1 else "Absent"
     return render(request, 'info/all_student_attendance.html', context={"data": data})
-
-#
-# @login_required()
-# def t_class_date(request, assign_id):
-#     now = timezone.now()
-#     ass = get_object_or_404(Assign, id=assign_id)
-#     att_list = ass.attendanceclass_set.filter(date__lte=now).order_by('-date')
-#     return render(request, 'info/t_class_date.html', {'att_list': att_list})
-#
-
-# @login_required()
-# def t_attendance_detail(request, id):
-#     stud = get_object_or_404(Student, serial_number=id)
-#     att_list = Attendance.objects.filter(student=stud).order_by('date')
-#     return render(request, 'info/t_att_detail.html', {'att_list': att_list})
-#
-#
-# @login_required()
-# def change_att(request, att_id):
-#     a = get_object_or_404(Attendance, id=att_id)
-#     a.status = not a.status
-#     a.save()
-#     return HttpResponseRedirect(reverse('t_attendance_detail', args=(a.student.id)))
 
 
 # API based views
