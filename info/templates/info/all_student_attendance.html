@@ -1,0 +1,27 @@
+{% extends 'info/base.html' %}
+{% block content %}
+    <h1>Attendance Details</h1>
+    <div class="card mb-3">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>Students</th>
+                        <th>Today's Attendance</th>
+                        <th>Total Attendance</th>
+                    </tr>
+                  {% for student, att in data.items %}
+                    <tr>
+                        <th>{{ student }}</th>
+                        <th>{{ att }}</th>
+                        <th>Total Attendance</th>
+                    </tr>
+                  {% endfor %}
+                  </thead>
+
+                </table>
+              </div>
+            </div>
+    </div>
+{% endblock %}

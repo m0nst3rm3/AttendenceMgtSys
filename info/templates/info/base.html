@@ -71,19 +71,19 @@
             </li>
         {% if request.user.is_student %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'attendance' request.user.student.serial_number %}">
+              <a class="nav-link" href="{% url 'attendance' request.user.student.id %}">
                 <span>Attendance</span>
               </a>
             </li>
 
         {% elif request.user.is_teacher %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 't_clas' request.user.teacher.id 1 %}">
+              <a class="nav-link" href="{% url 'all_std_attendance' request.user.teacher.id 1 %}">
                 <span>Attendance</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 't_clas' request.user.teacher.id 3 %}">
+              <a class="nav-link" href="{% url 'all_std_attendance' request.user.teacher 1 %}">
                 <span>Reports</span>
               </a>
             </li>

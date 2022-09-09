@@ -50,9 +50,8 @@
 
       <!-- Jumbotron Header -->
       <header class="jumbotron my-4">
-        <h1 class="display-3 text-capitalize">Welcome {{ request.user.teacher.name }}</h1>
-{#        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>#}
-{#        <a href="#" class="btn btn-primary btn-lg">Call to action!</a>#}
+        <h1 class="display-3 text-capitalize">Welcome {{ user }}</h1>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
       </header>
 
       <!-- Page Features -->
@@ -60,7 +59,7 @@
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-              <a href="{% url 't_clas' request.user.teacher.id 1 %}">
+              <a href="{% url 'all_std_attendance' request.user.teacher.id 1 %}">
                 <img class="card-img-top" src="{% static 'info/images/attendance2.jpg' %}" alt="">
               </a>
               <div class="card-body">
@@ -69,14 +68,14 @@
                   the provision to edit the attendance of a whole class or student individually.</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 't_clas' request.user.teacher.id 1 %}"> Enter Attendance</a>
+                <a class="btn btn-primary" role="button" href="{% url 'all_std_attendance' request.user.teacher.id 1 %}"> Enter Attendance</a>
             </div>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
-            <a href="{% url 't_clas' request.user.teacher.id 3 %}">
+            <a href="{% url 'all_std_attendance' request.user.teacher.id 3 %}">
                 <img class="card-img-top" src="{% static 'info/images/reports.png' %}" alt="">
             </a>
             <div class="card-body">
@@ -85,7 +84,7 @@
                     of the students belonging to that class and their respective CIE and Attendance.</p>
             </div>
             <div class="card-footer">
-              <a href="{% url 't_clas' request.user.teacher.id 3 %}" class="btn btn-primary">Generate Reports</a>
+              <a href="{% url 'all_std_attendance' request.user.teacher.id 3 %}" class="btn btn-primary">Generate Reports</a>
             </div>
           </div>
         </div>
