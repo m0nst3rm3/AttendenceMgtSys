@@ -92,6 +92,7 @@ class AttendanceTotal(models.Model):
 
     @property
     def total_class(self):
+
         student = Student.objects.get(name=self.student)
         total_class = Attendance.objects.filter(student=student).count()
         return total_class
