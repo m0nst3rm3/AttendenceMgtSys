@@ -11,11 +11,17 @@
                         <th>Today's Attendance</th>
                         <th>Total Attendance</th>
                     </tr>
-                  {% for student, att in data.items %}
+                  {% for record in data %}
                     <tr>
-                        <th>{{ student }}</th>
-                        <th>{{ att }}</th>
-                        <th>Total Attendance</th>
+                        <th>{{ record.name }}</th>
+                        {% if record.status == "Present" %}
+                                <td class="p-3 mb-2 bg-success text-white">Present</td>
+
+                        {% else %}
+                            <td class="p-3 mb-2 bg-danger text-white">Absent</td>
+
+                        {% endif %}
+                        <th>{{ record.total_attendance }}</th>
                     </tr>
                   {% endfor %}
                   </thead>

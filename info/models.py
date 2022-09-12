@@ -80,8 +80,12 @@ class Assign(models.Model):
 
 
 class Attendance(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='attendances')
     daily_login = models.DateField(auto_now_add=True, null=True, blank=True)
+
+    @property
+    def is_present(self):
+        self.objects.filter(student=student, daily_login=date.today()).first()
 
     def __str__(self):
         return '%s : %s' % (self.student.user.first_name, self.daily_login)
@@ -91,14 +95,13 @@ class AttendanceTotal(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     @property
-    def total_class(self):
-
+    def total_attendance(self):
         student = Student.objects.get(name=self.student)
-        total_class = Attendance.objects.filter(student=student).count()
-        return total_class
+        total_attendance1 = Attendance.objects.filter(student=student).count()
+        return total_attendance1
 
     @property
-    def attendance(self):
+    def attendance_percentage(self):
         student = Student.objects.get(name=self.student)
         total_class = Attendance.objects.filter(student=student).count()
         att_class = Attendance.objects.filter(student=student, status='True').count()

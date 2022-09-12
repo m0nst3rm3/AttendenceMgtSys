@@ -20,12 +20,6 @@ def index(request):
 
 @login_required()
 def attendance(request, id):
-    # student = Student.objects.get(id=id)
-    # assignment_list = Assign.objects.filter(class_id_id=student.class_id)
-    # for assignment in assignment_list:
-    #     AttendanceTotal.objects.get_or_create(student=student, course=assignment.course)
-    # return render(request, 'info/attendance.html', {'att_list': AttendanceTotal.objects.all()})
-
     data = {}
 
     attendance1 = Attendance.objects.filter(daily_login=date.today()).first()
@@ -44,14 +38,15 @@ def attendance_detail(request, id):
 
 @login_required
 def all_student_attendance(request, *args, **kwargs):
-    data = {}
+    data = []
     for student in Student.objects.all():
-        attendance1 = Attendance.objects.filter(student=student, daily_login=date.today()).first()
-        data[student] = attendance1.daily_login if attendance1 else "Absent"
+        student_info = {"name": student.full_name}
+        att = student.attendances.filter(daily_login=date.today()).first()
+        status = "Present" if att else "Absent"
+        student_info["status"] = status
+        student_info["total_attendance"] = student.attendances.count()
+        data.append(student_info)
     return render(request, 'info/all_student_attendance.html', context={"data": data})
-
-
-# API based views
 
 
 from info.models import User, Teacher, Student, Class, Attendance
