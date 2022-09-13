@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta, datetime
 
 from django.shortcuts import render, get_object_or_404
 from .models import Assign, AttendanceTotal
@@ -20,11 +20,19 @@ def index(request):
 
 @login_required()
 def attendance(request, id):
-    data = {}
+    record = []
+    student = Student.objects.get(id=id)
+    student_info = {"name": request.user.first_name}
+    student_info["total_classes"] = 180
+    total_attendance = student.attendances.count()
+    student_info["total_attendance"] = total_attendance
+    student_info["classes_to_attend"] = 180 - total_attendance
 
-    attendance1 = Attendance.objects.filter(daily_login=date.today()).first()
-    data[attendance1] = attendance1.daily_login if "Present" else "Absent"
-    return render(request, 'info/attendance.html', context={"data": data})
+    attendance_percentage = (total_attendance / 180)*100
+    student_info["attendance_percentage"] = int(attendance_percentage)
+
+    record.append(student_info)
+    return render(request, 'info/attendance.html', context={"record": record})
 
 
 @login_required()

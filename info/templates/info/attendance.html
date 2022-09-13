@@ -16,19 +16,18 @@
                         <th>Attendance %</th>
                         <th>Classes to attend</th>
                     </tr>
-                    {% for index, value in data.items %}
+                    {% for data in record %}
                   <tr>
-                        {% if value == value %}
-                            <td class="p-3 mb-2 bg-success text-white">Present</td>
 
+                        <th>{{ data.total_attendance }}</th>
+                        <th>{{ data.total_classes }}</th>
+                         {% if data.attendance_percentage < 75 %}
+                            <td class="p-3 mb-2 bg-danger text-white">{{data.attendance_percentage}} %</td>
                         {% else %}
-                            <td class="p-3 mb-2 bg-danger text-white">Absent</td>
+                            <td class="p-3 mb-2 bg-success text-white">{{data.attendance_percentage}} % </td>
 
                         {% endif %}
-
-                        <th>{{ value }}</th>
-                        <th>percentage here</th>
-                        <th>Remainder here</th>
+                        <th>{{ data.classes_to_attend }}</th>
                     </tr>
                   {% endfor %}
                   </thead>

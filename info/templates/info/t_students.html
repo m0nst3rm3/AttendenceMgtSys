@@ -11,7 +11,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                        <th>Student name</th>
                         <th>Attended classes</th>
                         <th>Total classes</th>
                         <th>Attendance %</th>
@@ -21,8 +20,7 @@
                   <tbody>
                     {% for a in att_list %}
                     <tr>
-                        <td>{{ a.student_id }}</td>
-                        <td>{{ a.att_class }}</td>
+                        <td>{{ a.total_attendance }}</td>
                         <td>{{ a.total_class }}</td>
                         {% if a.attendance < 75 %}
                             <td class="p-3 mb-2 bg-danger text-white">{{ a.attendance }}</td>

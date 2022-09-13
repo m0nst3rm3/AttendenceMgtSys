@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
 sex_choice = (
     ('Male', 'Male'),
     ('Female', 'Female')
@@ -20,6 +19,10 @@ DAYS_OF_WEEK = (
 class AbstractUserDetail(models.Model):
     sex = models.CharField(max_length=6, choices=sex_choice, default='Male')
     date_of_birth = models.DateField(null=True, blank=True)
+
+    @property
+    def class_duration(self):
+        return self.date_joined
 
     class Meta:
         abstract = True
@@ -83,10 +86,6 @@ class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='attendances')
     daily_login = models.DateField(auto_now_add=True, null=True, blank=True)
 
-    @property
-    def is_present(self):
-        self.objects.filter(student=student, daily_login=date.today()).first()
-
     def __str__(self):
         return '%s : %s' % (self.student.user.first_name, self.daily_login)
 
@@ -95,13 +94,13 @@ class AttendanceTotal(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     @property
-    def total_attendance(self):
+    def total_class(self):
         student = Student.objects.get(name=self.student)
-        total_attendance1 = Attendance.objects.filter(student=student).count()
-        return total_attendance1
+        total_class = Attendance.objects.filter(student=student).count()
+        return total_class
 
     @property
-    def attendance_percentage(self):
+    def attendance(self):
         student = Student.objects.get(name=self.student)
         total_class = Attendance.objects.filter(student=student).count()
         att_class = Attendance.objects.filter(student=student, status='True').count()
